@@ -19,85 +19,76 @@ def randomNumGen():
 def positiveQuote():
     quoteNum = randomNumGen
     if (firstNum == 1):
-        quote = ""
+        quote = "This too shall pass."
     elif (firstNum == 2):
-        quote = ""
+        quote = "This moment is not something happening to you, it is something you are making every moment, with every thought."
     elif (firstNum == 3):
-        quote = ""
+        quote = "You are growing, you are changing, but remember that one day you wished to be where you are right now."
     elif (firstNum == 4):
-        quote = ""
+        quote = "You don't have to control your thoughts. You just have to stop letting them control you. - Dan Millman"
     elif (firstNum == 5):
-        quote = ""
+        quote = "The greatest weapon against stress is our ability to choose one thought over another. - William James"
     elif (firstNum == 6):
-        quote = ""
+        quote = "Between stimulus and response, there is a space. In that space is our power to choose our response. In our response lies our growth and our freedom. - Viktor E. Frankl"
     elif (firstNum == 7):
-        quote = ""
+        quote = "Criticizing yourself all the time or being judgmental of yourself is like wearing sunglasses indoors - Matthew McKay"
     elif (firstNum == 8):
-        quote = ""
+        quote = "Tomorrow is a new day. You shall begin it serenely and with too high a spirit to be encumbered with your old nonsense. ―Ralph Waldo Emerson"
     elif (firstNum == 9):
-        quote = ""
+        quote = "In three words, I can summarize everything I’ve learned about life. It goes on. - Robert Frost"
     else:
-        quote = ""
-    #options for end of function:
-    #return quote potentially
-    # OR
-    #print(quote)
+        quote = "Out of suffering have emerged the strongest souls; the most massive characters are seared with scars. - Khalil Gibran"
+    return quote
 
 #This function holds all the inspirational theme quotes
 def inspirationalQuote():
     quoteNum = randomNumGen
     if (firstNum == 1):
-        quote = ""
+        quote = "Spread love everywhere you go. Let no one ever come without leaving happier. - Mother Teresa"
     elif (firstNum == 2):
-        quote = ""
+        quote = "It does not matter how slowly you go, as long as you do not stop. —Confucius"
     elif (firstNum == 3):
-        quote = ""
+        quote = "You can be everything. You can be the infinite amount of things that people are. —Kesha"
     elif (firstNum == 4):
-        quote = ""
+        quote = "Be the change that you wish to see in the world. —Mahatma Ghandi"
     elif (firstNum == 5):
-        quote = ""
+        quote = "If my mind can conceive it, if my heart can believe it, then I can achieve it. —Muhammad Ali"
     elif (firstNum == 6):
-        quote = ""
+        quote = "The people who are crazy enough to think they can change the world are the ones who do. —Steve Jobs"
     elif (firstNum == 7):
-        quote = ""
+        quote = "Once you replace negative thoughts with positive ones, you'll start having positive results. —Willie Nelson"
     elif (firstNum == 8):
-        quote = ""
+        quote = "Stay close to anything that makes you glad you are alive. —Hafez"
     elif (firstNum == 9):
-        quote = ""
+        quote = "We can't help everyone, but everyone can help someone. —Ronald Reagan"
     else:
-        quote = ""
-    #options for end of function:
-    #return quote potentially
-    # OR
-    #print(quote)
+        quote = "Life has got all those twists and turns. You’ve got to hold on tight and off you go. —Nicole Kidman"
+    return quote
 
 #This function holds all the motivational theme quotes
 def motivationalQuote():
     quoteNum = randomNumGen
     if (firstNum == 1):
-        quote = ""
+        quote = "You are stronger than you know!"
     elif (firstNum == 2):
-        quote = ""
+        quote = "Practice makes perfect! Keep it up!"
     elif (firstNum == 3):
-        quote = ""
+        quote = "Nothing is impossible. The word itself says I'm possible! —Audrey Hepburn"
     elif (firstNum == 4):
-        quote = ""
+        quote = "Dreams do not come true just because you dream them. It’s hard work that makes things happen. It’s hard work that creates change. —Shonda Rhimes"
     elif (firstNum == 5):
-        quote = ""
+        quote = "Life has no limitations, except the ones you make. —Les Brown"
     elif (firstNum == 6):
-        quote = ""
+        quote = "The best way to get started is to quit talking and begin doing. - Walt Disney"
     elif (firstNum == 7):
-        quote = ""
+        quote = "Someone is sitting in the shade today because someone planted a tree a long time ago. - Warren Buffett"
     elif (firstNum == 8):
-        quote = ""
+        quote = "We will fail when we fail to try. —Rosa Parks"
     elif (firstNum == 9):
-        quote = ""
+        quote = "You’re braver than you believe, stronger than you seem, and smarter than you think. —A.A. Milne"
     else:
-        quote = ""
-    #options for end of function:
-    #return quote potentially
-    # OR
-    #print(quote)
+        quote = "Happiness is not something readymade; it comes from your own actions. —The Dalai Lama"
+    return quote
 
 
 
@@ -106,10 +97,12 @@ def motivationalQuote():
 firstNum = 0 #get first character of string from zeroMQ
 
 if (firstNum == 1):
-    positiveQuote()
+    quote = positiveQuote()
 elif (firstNum == 2):
-    inspirationalQuote()
+    quote = inspirationalQuote()
 elif (firstNum == 3):
-    motivationalQuote()
+    quote = motivationalQuote()
 else:
     print("Error: Main code did not append proper number to quote request")
+
+#Send back quote string variable with ZeroMQ
