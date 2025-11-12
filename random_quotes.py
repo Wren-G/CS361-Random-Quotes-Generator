@@ -21,7 +21,7 @@ def randomNumGen():
 
 #This function holds all the positive theme quotes
 def positiveQuote():
-    quoteNum = randomNumGen
+    quoteNum = randomNumGen()
     if (quoteNum == 1):
         quote = "This too shall pass."
     elif (quoteNum == 2):
@@ -46,7 +46,7 @@ def positiveQuote():
 
 #This function holds all the inspirational theme quotes
 def inspirationalQuote():
-    quoteNum = randomNumGen
+    quoteNum = randomNumGen()
     if (quoteNum == 1):
         quote = "Spread love everywhere you go. Let no one ever come without leaving happier. - Mother Teresa"
     elif (quoteNum == 2):
@@ -71,7 +71,7 @@ def inspirationalQuote():
 
 #This function holds all the motivational theme quotes
 def motivationalQuote():
-    quoteNum = randomNumGen
+    quoteNum = randomNumGen()
     if (quoteNum == 1):
         quote = "You are stronger than you know!"
     elif (quoteNum == 2):
