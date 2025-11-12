@@ -4,6 +4,11 @@
 
 #libraries go here
 import random
+import zmq
+import time
+
+# establish zmq context
+context = zmq.Context()
 
 #global quote variable
 quote = ""
@@ -13,7 +18,6 @@ quote = ""
 #This is a random number generator to generate a number between 1-10
 def randomNumGen():
     return random.randint(1, 10)
-
 
 #This function holds all the positive theme quotes
 def positiveQuote():
@@ -35,7 +39,7 @@ def positiveQuote():
     elif (quoteNum == 8):
         quote = "Tomorrow is a new day. You shall begin it serenely and with too high a spirit to be encumbered with your old nonsense. ―Ralph Waldo Emerson"
     elif (quoteNum == 9):
-        quote = "In three words, I can summarize everything I’ve learned about life. It goes on. - Robert Frost"
+        quote = "In three words, I can summarize everything I've learned about life. It goes on. - Robert Frost"
     else:
         quote = "Out of suffering have emerged the strongest souls; the most massive characters are seared with scars. - Khalil Gibran"
     return quote
@@ -62,7 +66,7 @@ def inspirationalQuote():
     elif (quoteNum == 9):
         quote = "We can't help everyone, but everyone can help someone. —Ronald Reagan"
     else:
-        quote = "Life has got all those twists and turns. You’ve got to hold on tight and off you go. —Nicole Kidman"
+        quote = "Life has got all those twists and turns. You've got to hold on tight and off you go. —Nicole Kidman"
     return quote
 
 #This function holds all the motivational theme quotes
@@ -90,20 +94,55 @@ def motivationalQuote():
         quote = "Happiness is not something readymade; it comes from your own actions. —The Dalai Lama"
     return quote
 
+# This function sends the string to main *this is server side
+def sendQuote(socket):
+    while True:
+        # get message from socket
+        message = socket.recv()
+        quote = ''
+        # if we have a message, decode and change type to int
+        if len(message) > 0:
+            try:
+                firstNum = int(message.decode())
+                if (firstNum == 1): #1 == positive
+                    quote = positiveQuote()
+                    break
+                elif (firstNum == 2): #2 == inspirational
+                    quote = inspirationalQuote()
+                    break
+                elif (firstNum == 3): #3 == motivation
+                    quote = motivationalQuote()
+                    break
+                else:
+                    print("Error: Main code did not append proper number to quote request")
+                    break
+            
+            # if the sent string is not an int, send an error message back
+            except ValueError:
+                print('Message Received is not an integer')
+                break
+
+    time.sleep(3)
+    if len(quote) > 0:
+        # send quote back to program if nonempty
+        socket.send_string(quote)
+    else:
+        # otherwise, send error
+        socket.send_string('Incorrect Call. Try an int, 1-3')
 
 
 
 #Main program
 def main():
-    firstNum = 0 #get first character of string from zeroMQ
+    # create a new reply socket
+    socket = context.socket(zmq.REP)
+    # bind socket to 5555
+    socket.bind('tcp://*:5555')
+    print('Connecting...')
+    # call sendQuote to process sent info and reply with a quote
+    sendQuote(socket)
+    # exit context
+    context.destroy()
 
-    if (firstNum == 1): #1 == positive
-        quote = positiveQuote()
-    elif (firstNum == 2): #2 == inspirational
-        quote = inspirationalQuote()
-    elif (firstNum == 3): #3 == motivation
-        quote = motivationalQuote()
-    else:
-        print("Error: Main code did not append proper number to quote request")
-
-    #Send back quote string variable with ZeroMQ
+if __name__ == "__main__":
+    main()
