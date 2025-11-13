@@ -114,12 +114,12 @@ def sendQuote(socket):
                     quote = motivationalQuote()
                     break
                 else:
-                    print("Error: Main code did not append proper number to quote request")
+                    print("Error: Main code did not append proper number to quote request. Try an int, 1-3")
                     break
             
             # if the sent string is not an int, send an error message back
             except ValueError:
-                print('Message Received is not an integer')
+                print("Error: Message Received is not an integer")
                 break
 
     time.sleep(3)
@@ -128,7 +128,7 @@ def sendQuote(socket):
         socket.send_string(quote)
     else:
         # otherwise, send error
-        socket.send_string('Incorrect Call. Try an int, 1-3')
+        socket.send_string("Error: Main code did not append proper number to quote request. Try an int, 1-3")
 
 
 
