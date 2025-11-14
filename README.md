@@ -39,3 +39,6 @@ context.destroy()
 
  # Error: Message Received is not an integer
  String sent to microservice was not an integer value
+
+ # UML
+<img width="1960" height="960" alt="Screenshot 2025-11-14 141728" src="https://github.com/user-attachments/assets/f6a50f08-f9ab-4851-8e9c-a3cdb3bf2b46" />
